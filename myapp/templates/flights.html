@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Flights</title>
+</head>
+<body>
+
+<div class="nav">
+    <a href="{% url '' %}">Home</a>
+    <a href="{% url 'flights' %}">Book a Flight</a>
+    <a href="{% url 'bookedFlights' %}">Check your flights</a>
+    <a href="{% url 'routes' %}">Our Routes</a>
+
+    <a href="{% url 'createAccount' %}">Create Account</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout2' %}">Logout</a>
+    <h3>Welcome {{request.user}}</h3>
+    {% else %}
+    <a href="{% url 'login2' %}">Login</a>
+    {% endif %}
+</div>
+
+<div id="flightTable">
+<h1>Flights available for booking</h1>
+
+<form action="{% url 'flights' %}" method="post">
+    {%csrf_token%}
+    <h4>Filter by: </h4>
+    <table>
+        <tr>
+            <td><p>Earliest Departure Date: </p><input type="date" name="dDate"></td>
+            <td><p>Latest Arrival Date: </p><input type="date" name="aDate"></td>
+            <td><p>Departure Airport: </p><input type="text" name="dAir"></td>
+            <td><p>Arrival Airport: </p><input type="text" name="aAir"></td>
+            <td><input type="submit" value="Search"/></td>
+        </tr>
+    </table>
+</form>
+
+<table border=1>
+    <tr>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Departure Airport</th>
+        <th>Arrival Airport</th>
+        <th>Plane Type</th>
+        <th>Remaining Seats</th>
+        <th>Flight Number</th>
+        <th>Price</th>
+        <th>Stopovers</th>
+        <th>Book</th>
+    </tr>
+    <!-- Don't show flights that have already left or have no seats available -->
+    {% for x in data %}
+        {% if x.remainingSeats > 0 and x.leavingDate > current %}
+    <tr>
+        <td>{{x.leavingDate}}</td>
+        <td>{{x.arrivalDate}}</td>
+        <td>{{x.fromAirport}}</td>
+        <td>{{x.toAirport}}</td>
+        <td>{{x.planeType}}</td>
+        <td>{{x.remainingSeats}}</td>
+        <td>{{x.flightNo}}</td>
+        <td>{{x.price}}</td>
+        <td>{{x.stopOvers}}</td>
+        <form action="{% url 'form' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value={{x.flightNo}} name="flightNo"/>
+            <td><p><input type="submit" value="Book a Seat"/></td>
+        </form>
+    </tr>
+    {% endif %}
+    {% endfor %}
+
+</table>
+</div>
+</body>
+</html>

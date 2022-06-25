@@ -1,0 +1,142 @@
+.nav {
+    background-color: Black;
+    color: Black;
+    height: 3em;
+    top:0;
+    left:0em;
+    width: 100%;
+    position: absolute;
+}
+
+.nav a {
+    background-color:Black;
+    color: White;
+    display: block;
+    float: left;
+    padding: .8em;
+    height: 100%;
+    text-decoration: none;
+    font-family: Georgia, Times New Roman, serif;
+    font-size:1.2em;
+}
+
+.nav h3 {
+    margin-top:0;
+    padding-top:0;
+    padding-right: 1em;
+    text-align:right;
+    font-family: Georgia, Times New Roman, serif;
+    font-size: 2.3em;
+    color:White;
+}
+
+div {
+    top: 1.5em;
+    top: 1.5em;
+    left: -0.5em;
+    position: relative;
+    background-color: #8cacc1;
+    width:100vw;
+    height:100vh;
+    margin: 0;
+}
+
+h1 {
+    margin-top:0.5em;
+    margin-bottom:0em;
+    text-align:center;
+    font-family: Georgia, Times New Roman, serif;
+    font-size:3em;
+    font-weight:500;
+}
+
+#home img {
+    width:100%;
+    height:auto;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#flightTable {
+    margin-top:1.5em;
+    background-color: grey;
+    overflow: auto;
+}
+#flightTable table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align:center;
+}
+#flightTable th {
+    border: 3px solid black;
+    font-size:1.5em;
+    border-collapse: collapse;
+}
+#flightTable input {
+    height: 100%;
+    width: 100%;
+    background-color: lightgrey;
+    color: Black;
+    font-size: .8em;
+}
+#flightTable td {
+    font-size:1.5em;
+    border-collapse: collapse;
+    padding:0;
+}
+#flightTable h4 {
+    font-size: 3em;
+    margin-bottom:0;
+    margin-top:0;
+}
+#flightTable h1 {
+    margin-bottom: 0;
+}
+#flightTable p {
+    font-size: 1em;
+}
+
+
+p, h3, h4{
+    font-size: 2em;
+    font-family: Georgia, Times New Roman, serif;
+}
+
+#confirmation img {
+    position:absolute;
+    right:1em;
+    top:4em;
+    display:block;
+    margin-left: auto;
+    float:right;
+    width:50vw;
+    max-height:90vh;
+}
+#confirmation input {
+    font-size:1em;
+}
+#confirmation form {
+    width:50vw;
+}
+
+#routes table{
+    width:100%;
+    background-color: #8cacc1;
+}
+#routes td {
+    width:50vw;
+}
+#routes th {
+    padding-top:1em;
+    font-size: 1.5em;
+    font-family: Georgia, Times New Roman, serif;
+}
+#routes img {
+    display:block;
+    margin-left: auto;
+    margin-right:auto;
+    max-height: 50vh;
+    max-width:50vw;
+}

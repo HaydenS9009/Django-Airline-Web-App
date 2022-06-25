@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Booked Flights</title>
+</head>
+<body>
+<!-- Navigation bar -->
+<div class="nav">
+    <a href="{% url '' %}">Home</a>
+    <a href="{% url 'flights' %}">Book a Flight</a>
+    <a href="{% url 'bookedFlights' %}">Check your flights</a>
+    <a href="{% url 'routes' %}">Our Routes</a>
+
+    <a href="{% url 'createAccount' %}">Create Account</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout2' %}">Logout</a>
+    <h3>Welcome {{request.user}}</h3>
+    {% else %}
+    <a href="{% url 'login2' %}">Login</a>
+    {% endif %}
+</div>
+
+<!-- Table of available flights, with all related data -->
+<div id="flightTable">
+<h1>Here is a list of each flight you have a booking for</h1>
+
+<table border=1>
+    <tr>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Departure Airport</th>
+        <th>Arrival Airport</th>
+        <th>Plane Type</th>
+        <th>Remaining Seats</th>
+        <th>Flight Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Price</th>
+        <th>Stopovers</th>
+        <th>Booking Number</th>
+    </tr>
+    {% for x in data %}
+    <tr>
+        <td>{{x.flightNo.leavingDate}}</td>
+        <td>{{x.flightNo.arrivalDate}}</td>
+        <td>{{x.flightNo.fromAirport}}</td>
+        <td>{{x.flightNo.toAirport}}</td>
+        <td>{{x.flightNo.planeType}}</td>
+        <td>{{x.flightNo.remainingSeats}}</td>
+        <td>{{x.flightNo.flightNo}}</td>
+        <td>{{x.firstName}}</td>
+        <td>{{x.lastName}}</td>
+        <td>{{x.flightNo.price}}</td>
+        <td>{{x.flightNo.stopOvers}}</td>
+        <td>{{x.bookingNo}}</td>
+        <td>
+            <!-- Button to cancel flight, also passes through data-->
+            <form method="post" action="{% url 'cancel' %}">
+                {% csrf_token %}
+                <input type="hidden" value={{x.flightNo.flightNo}} name="flightNo"/>
+                <input type="hidden" value={{x.firstName}} name="fName"/>
+                <input type="hidden" value={{x.lastName}} name="lName"/>
+                <input type="hidden" value={{x.bookingNo}} name="bookingNo"/>
+                <button>Cancel this booking</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+</body>
+</html>

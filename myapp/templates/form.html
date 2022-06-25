@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Booking Flight</title>
+</head>
+
+<div class="nav">
+    <a href="{% url '' %}">Home</a>
+    <a href="{% url 'flights' %}">Book a Flight</a>
+    <a href="{% url 'bookedFlights' %}">Check your flights</a>
+    <a href="{% url 'routes' %}">Our Routes</a>
+
+    <a href="{% url 'createAccount' %}">Create Account</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout2' %}">Logout</a>
+    <h3>Welcome {{request.user}}</h3>
+    {% else %}
+    <a href="{% url 'login2' %}">Login</a>
+    {% endif %}
+</div>
+
+
+<body>
+<div id="confirmation">
+<h1>Submit to confirm your seat</h1>
+<form method="post" action="{% url 'invoice' %}">
+    {% csrf_token %}
+    <input type="hidden" value={{data.flightNo}} name="flightNo"/>
+    <p><input type="submit" value="Submit"/>
+
+    <p>Departure Time: {{data.leavingDate}}</p>
+    <p>Arrival Time: {{data.arrivalDate}}</p>
+    <p>Departure Airport: {{data.fromAirport}}</p>
+    <p>Arrival Airport: {{data.toAirport}}</p>
+    <p>Plane Type: {{data.planeType}}</p>
+    <p>Remaining Seats: {{data.remainingSeats}}</p>
+    <p>Flight Number: {{data.flightNo}}</p>
+    <p>Price: {{data.price}}</p>
+    <p>Stop Overs: {{data.stopOvers}}</p>
+
+</form>
+<!-- Show Picture based on the route the flight is taking-->
+{% if data.toAirport == 'YSSY' or data.fromAirport == 'YSSY' %}
+<img src="../static/Sydney.gif">
+{% elif data.toAirport == 'NZRO' or data.fromAirport == 'NZRO' %}
+<img src="../static/Rotorua.gif">
+{% elif data.toAirport == 'NZGB' or data.fromAirport == 'NZGB' %}
+<img src="../static/GBIsland.gif">
+{% elif data.toAirport == 'NZCI' or data.fromAirport == 'NZCI' %}
+<img src="../static/Chatham.gif">
+{% elif data.toAirport == 'NZTL' or data.fromAirport == 'NZTL' %}
+<img src="../static/Tekapo.gif">
+{% endif %}
+</div>
+</body>
+</html>

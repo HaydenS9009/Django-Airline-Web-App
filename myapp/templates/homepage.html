@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Home</title>
+</head>
+<body>
+
+<div class="nav">
+    <a href="{% url '' %}">Home</a>
+    <a href="{% url 'flights' %}">Book a Flight</a>
+    <a href="{% url 'bookedFlights' %}">Check your flights</a>
+    <a href="{% url 'routes' %}">Our Routes</a>
+
+    <a href="{% url 'createAccount' %}">Create Account</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout2' %}">Logout</a>
+    <h3>Welcome {{request.user}}</h3>
+    {% else %}
+    <a href="{% url 'login2' %}">Login</a>
+    {% endif %}
+</div>
+
+<div id="home">
+    <h1>Welcome to the Airline</h1>
+    <img src="../static/plane3.jpg">
+</div>
+</body>
+</html>
