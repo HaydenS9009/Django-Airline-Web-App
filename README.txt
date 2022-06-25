@@ -1,4 +1,7 @@
-Assignment 2 - 159.352 - Hayden Stimpson - 19032670
+Assignment 2 for 159.352 "Advanced Web Developement"
+
+The goal for this assignment was to create a web application of an airline website. This includes functionality to create an account, book a flight, check flights, 
+cancel flights, etc. This was done using the Django web framework.
 
 To run:
 Open cmd in this files directory.
